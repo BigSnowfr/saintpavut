@@ -1,4 +1,4 @@
-# saintpavut
+# Saint-Pavut
 Code source du projet MMI S3 de l'IUT de Troyes. Saint-Pavut codé en MVC grâce à CodeIgniter
 
 ## Choses à faire
@@ -15,3 +15,7 @@ Code source du projet MMI S3 de l'IUT de Troyes. Saint-Pavut codé en MVC grâce
       
 #### Modifier dans le fichier /application/config/config.php
      $config['base_url'] = 'http://195.83.128.55/~mmi15***/saintpavut/';
+     
+#### Envoyer tous les fichiers sur le serveur dans un dossier saintpavut à la racine !
+
+#### Dire merci ! :-*
