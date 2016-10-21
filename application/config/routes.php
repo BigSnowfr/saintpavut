@@ -49,11 +49,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['manifestations/page/(:any)'] = 'manifestations/pagination/$i';
-$route['manifestations/view/(:any)'] = 'manifestations/details/$i';
-$route['manifestations'] = 'manifestations';
+$route['catalogue/page/(:any)'] = 'catalogue/pagination/$i';
+$route['catalogue/view/(:any)'] = 'catalogue/details/$i';
+$route['catalogue'] = 'catalogue';
 $route['recherches'] = 'recherches';
-$route['salles/(:any)'] = 'salles/view/$1';
 $route['salles'] = 'salles';
-$route['(:any)'] = 'pages/view/$1';
-$route['default_controller'] = 'pages/view';
+$route['default_controller'] = 'pages/index';

@@ -12,10 +12,10 @@ Code source du projet MMI S3 de l'IUT de Troyes. Saint-Pavut codé en MVC grâce
       'username' => 'mmi15***', <br>
       'password' => '****', <br>
       'database' => 'basemmi15****', <br>
-      
+
 #### Modifier dans le fichier /application/config/config.php
      $config['base_url'] = 'http://195.83.128.55/~mmi15***/saintpavut/';
-     
+
 #### Envoyer tous les fichiers sur le serveur dans un dossier saintpavut à la racine !
 
 #### Dire merci ! :-*

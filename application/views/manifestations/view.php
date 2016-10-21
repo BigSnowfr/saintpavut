@@ -28,38 +28,57 @@ $infos = $manif->getCamembert($manifestations_item['manif_id']);
         ]);
 
         // Set chart options
-        var options = {'title':'<?php echo $manifestations_item['manif_intitul']; ?>',
-            'width':400,
-            'height':300};
+        var options = {"title":"<?php echo $manifestations_item['manif_intitul']; ?>",
+            'width':600,
+            'height':400,
+            is3D: true};
+
 
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
         chart.draw(data, options);
     }
 </script>
-<div class="container">
-<h2><?php echo $title; ?></h2>
 
-    <h3><?php echo '<span id="titre">'.$manifestations_item['manif_intitul'].'</span> - '.$manifestations_item['manif_prix_place'] * 1.13.'$ - '.$manifestations_item['manif_type'].' - '.$manifestations_item['salle_nom'].' - '.$manifestations_item['salle_place_max']; ?> places dispo</h3>
-    <img src="../../public/photos/<?php echo $manifestations_item['manif_photo'];?>" alt="">
-    <div class="main">
-        <p><?php echo $manifestations_item['manif_description']; ?></p>
-    </div>
-    <div class="col-md-6">
-        <strong>
-            <?php
-            echo 'Nombre de résa : '.$nbResa = $manif->countReservation($manifestations_item['manif_id']).' Nombre Place : ';
-            echo $nbPlace = $manifestations_item['salle_place_max'];
-            $pourcentage = ($nbResa / $nbPlace) * 100;
-            ?>
-        </strong>
-        <div class="progress">
-            <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $pourcentage; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $pourcentage; ?>%;">
-                <?php echo round($pourcentage,0); ?>%
+
+
+<div class="container">
+    <h1 class="margeTop" style="color: #000"><?php echo $manifestations_item['manif_intitul']; ?></h1>
+
+    <a href="../createPDF" class="btn btn-primary btn-block" target="_blank">Catalogue PDF</a>
+    <div class="col-md-12">
+            <div class="col-md-5 blocManif">
+                    <div class="imageManif">
+                        <h3><?php echo ucfirst($manifestations_item['manif_type']).' - '.$manifestations_item['salle_nom']; ?></h3>
+                        <img src="<?php echo site_url();?>public/photos/<?php echo $manifestations_item['manif_photo'];?>" alt="">
+                    </div>
+                    <div class="main">
+                        <p class="text-justify"><?php echo $manifestations_item['manif_description']; ?></p>
+                    </div>
+                    <p class="text-center prixManif"><strong><?php echo $manifestations_item['manif_prix_place'] * 1.13.'$'; ?></strong></p>
+                    <p><strong>
+                            <?php
+                            echo 'Nombre de résa : '.$nbResa = $manif->countReservation($manifestations_item['manif_id']).' Nombre Place : ';
+                            echo $nbPlace = $manifestations_item['salle_place_max'];
+                            $pourcentage = ($nbResa / $nbPlace) * 100;
+                            ?>
+                        </strong></p>
+                    <?php
+                        if ($nbResa == 0)
+                        {
+                            echo 'Aucune réservation pour le moment';
+                        }else
+                        {
+                            echo '<img src="'.base_url().'catalogue/barre/'.$manifestations_item['manif_id'].'" alt="Remplissage de la salle">';
+                        }
+                    ?>
             </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div id="chart_div"></div>
+        <?php
+            if ($nbResa > 0)
+            {
+                echo '<div class="col-md-6"><div id="chart_div"></div></div>';
+            }
+        ?>
+
     </div>
 </div>

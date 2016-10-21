@@ -7,22 +7,23 @@
  */
 class Salles_model extends CI_Model {
 
+    // On indique le nom de la table dans la BDD
+    protected $salleBDD = 'stpavu_salles';
+
     public function __construct()
     {
+        // Appel de la base de donnée
         $this->load->database();
     }
 
-    public function get_salles($slug = FALSE)
+    // Afficher toutes les salles
+    public function get_salles()
     {
-        if ($slug === FALSE)
-        {
-            $this->db->select('*');
-            $this->db->from('stpavu_salles');
-            /**$this->db->join('stpavu_salles', 'stpavu_manifs.manif_salle_code = stpavu_salles.salle_code');**/
-            $query = $this->db->get();
-            return $query->result_array();
-        }
-        $query = $this->db->get_where('salle', array('slug' => $slug));
-        return $query->row_array();
+        // Aucun paramètre n'est passé donc on récupère toutes les salles
+        $this->db->select('*');
+        $this->db->order_by('salle_nom','ASC');
+        $this->db->from($this->salleBDD);
+        $query = $this->db->get();
+        return $query->result_array();
     }
 }

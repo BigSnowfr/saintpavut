@@ -1,4 +1,3 @@
-RewriteBase /~mmi15***/saintpavut/
 DirectoryIndex index.php
 
 # Rewrite engine
