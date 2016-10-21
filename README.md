@@ -14,7 +14,10 @@ Code source du projet MMI S3 de l'IUT de Troyes. Saint-Pavut codé en MVC grâce
       'database' => 'basemmi15****', <br>
 
 #### Modifier dans le fichier /application/config/config.php
-     $config['base_url'] = 'http://195.83.128.55/~mmi15***/saintpavut/';
+     $config['base_url'] = 'http://195.83.128.55/~mmi*****/saintpavut/';
+     
+#### Mettre la clé publique pour l'API Google Maps dans le fichier footer.php
+    key=***
 
 #### Envoyer tous les fichiers sur le serveur dans un dossier saintpavut à la racine !
 
