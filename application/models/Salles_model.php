@@ -24,6 +24,6 @@ class Salles_model extends CI_Model {
         $this->db->order_by('salle_nom','ASC');
         $this->db->from($this->salleBDD);
         $query = $this->db->get();
-        return $query->result_array();
+        return $query->result();
     }
 }

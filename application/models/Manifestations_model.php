@@ -25,7 +25,7 @@ class Manifestations_model extends CI_Model {
             // Aucun parametre n'est passé, on appel toutes les manif avec la jointure de la table salle
             $this->db->join('stpavu_salles', $this->table.'.manif_salle_code = stpavu_salles.salle_code');
             $query = $this->db->get($this->table);
-            return $query->result_array();
+            return $query->result();
         }
         // Un offset est passé à travers l'URL
         else if ($slug === FALSE)
@@ -41,7 +41,7 @@ class Manifestations_model extends CI_Model {
             //On appel toutes les manifs avec la jointure de la table salle avec toujours une limite à 4 et un offset qui dépend de l'URL
             $this->db->join('stpavu_salles', $this->table.'.manif_salle_code = stpavu_salles.salle_code');
             $query = $this->db->get($this->table, $limit, $offset);
-            $result['rows'] = $query->result_array();
+            $result['rows'] = $query->result();
             $result['num_results'] = $this->db->count_all_results($this->table);
             return $result;
         // Seulement un ID est passé dans ce cas, on affiche donc une seule manif
@@ -49,7 +49,7 @@ class Manifestations_model extends CI_Model {
         {
             $this->db->join('stpavu_salles', $this->table.'.manif_salle_code = stpavu_salles.salle_code');
             $query = $this->db->get_where($this->table, array('manif_id' => $slug));
-            return $query->row_array();
+            return $query->row();
         }
     }
 
@@ -69,7 +69,7 @@ class Manifestations_model extends CI_Model {
     {
         $this->db->order_by('manif_id', 'RANDOM');
         $query = $this->db->get($this->table, $limit, 0);
-        return $query->result_array();
+        return $query->result();
     }
 
     // On appel que les manifestations où l'intitulé comporte le terme passé en paramètre
@@ -78,7 +78,7 @@ class Manifestations_model extends CI_Model {
         $this->db->select('*');
         $this->db->like('manif_intitul',$terme);
         $query=$this->db->get($this->table);
-        return $query->result_array();
+        return $query->result();
     }
 
     // Appel des données pour créer le graphique de réservation par ville
@@ -90,8 +90,7 @@ class Manifestations_model extends CI_Model {
         $this->db->join($this->table, $this->table.'.manif_id = stpavu_resa.manif_ide');
         $this->db->order_by('abo_ville','ASC');
         $query = $this->db->get_where('stpavu_resa', array('manif_ide' => $id));
-        $result['rows'] = $query->result_array();
-        return $result;
+        return $query->result();
     }
 
     // On compte le nombre de réservation pour chaque manifestation
@@ -100,10 +99,10 @@ class Manifestations_model extends CI_Model {
         $nombre = 0;
         $this->db->where('manif_ide',$id);
         $query = $this->db->get('stpavu_resa');
-        $query = $query->result_array();
+        $query = $query->result();
         foreach ($query as $cle => $val)
         {
-          $nombre += $val['abo_qte_place_reservee'];
+          $nombre += $val->abo_qte_place_reservee;
         }
         return $nombre;
     }

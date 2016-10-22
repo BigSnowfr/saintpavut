@@ -86,15 +86,15 @@
             <!-- Affichage des 6 manifestations récupérées aléatoirement -->
             <?php foreach ($manifestations as $manifestation) : ?>
             <div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay=".3s">
-                <a class="portfolio-box" href="<?php echo site_url();?>public/photos/<?php echo $manifestation['manif_photo'];?>" data-lightbox="image-1" data-title="<?php echo $manifestation['manif_intitul']; ?>">
-                    <img src="<?php echo site_url();?>public/photos/<?php echo $manifestation['manif_photo'];?>" class="photoRandom" alt="1">
+                <a class="portfolio-box" href="<?php echo site_url();?>public/photos/<?php echo $manifestation->manif_photo;?>" data-lightbox="image-1" data-title="<?php echo $manifestation->manif_intitul; ?>">
+                    <img src="<?php echo site_url();?>public/photos/<?php echo $manifestation->manif_photo;?>" class="photoRandom" alt="1">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
-                                <?php echo ucfirst($manifestation['manif_type']); ?>
+                                <?php echo ucfirst($manifestation->manif_type); ?>
                             </div>
                             <div class="project-name">
-                                <?php echo $manifestation['manif_intitul']; ?>
+                                <?php echo $manifestation->manif_intitul; ?>
                             </div>
                         </div>
                     </div>

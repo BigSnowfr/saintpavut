@@ -22,21 +22,21 @@
         <?php foreach ($manifestations as $manifestation): ?>
                 <div class="col-md-5 blocManif">
 
-                    <a href="<?php echo site_url().'catalogue/details/'.$manifestation['manif_id']; ?>">
-                <h3><?php echo '<span id="titre">'.$manifestation['manif_intitul']; ?></span></h3>
+                    <a href="<?php echo site_url().'catalogue/details/'.$manifestation->manif_id; ?>">
+                <h3><?php echo '<span id="titre">'.$manifestation->manif_intitul; ?></span></h3>
                 <div class="imageManif">
-                    <h3><?php echo ucfirst($manifestation['manif_type']).' - '.$manifestation['salle_nom']; ?></h3>
-                    <img src="<?php echo site_url();?>public/photos/<?php echo $manifestation['manif_photo'];?>" alt="">
+                    <h3><?php echo ucfirst($manifestation->manif_type).' - '.$manifestation->salle_nom; ?></h3>
+                    <img src="<?php echo site_url();?>public/photos/<?php echo $manifestation->manif_photo;?>" alt="">
                 </div>
                 <div class="main">
-                    <p class="text-justify"><?php echo $manifestation['manif_description']; ?></p>
+                    <p class="text-justify"><?php echo $manifestation->manif_description; ?></p>
                 </div>
-                    <p class="text-center prixManif"><strong><?php echo $manifestation['manif_prix_place'] * 1.13.'$'; ?></strong></p>
+                    <p class="text-center prixManif"><strong><?php echo $manifestation->manif_prix_place * 1.13.'$'; ?></strong></p>
                         <p><strong>
                     <?php
                         $manif = new Manifestations_model();
-                        echo 'Nombre de réservation : '.$nbResa = $manif->countReservation($manifestation['manif_id']);
-                        echo '<br>Nombre place dans la salle : '.$nbPlace = $manifestation['salle_place_max'];
+                        echo 'Nombre de réservation : '.$nbResa = $manif->countReservation($manifestation->manif_id);
+                        echo '<br>Nombre place dans la salle : '.$nbPlace = $manifestation->salle_place_max;
                         $pourcentage = ($nbResa / $nbPlace) * 100;
                     ?></strong></p>
 
@@ -47,7 +47,7 @@
                             echo 'Aucune réservation pour le moment';
                         }else
                         {
-                            echo '<img src="'.base_url().'catalogue/barre/'.$manifestation['manif_id'].'" alt="Remplissage de la salle">';
+                            echo '<img src="'.base_url().'catalogue/barre/'.$manifestation->manif_id.'" alt="Remplissage de la salle">';
                         }
                         ?>
                     </a>

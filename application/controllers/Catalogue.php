@@ -35,7 +35,9 @@ class Catalogue extends CI_Controller{
         // On appel une seule manifestations dont l'ID est définit dans l'URL
         $data['manifestations_item'] = $this->manifestations_model->get_manifestations($i);
         // On compte le nombre de réservation pour cette manifestation
-        $data['count'] = $this->manifestations_model->countReservation($i);
+        $data['nbResa'] = $this->manifestations_model->countReservation($i);
+        // On récupère les informations afin de créer le diagramme
+        $data['camembert'] = $this->manifestations_model->getCamembert($i);
         $this->load->view('templates/header', $data);
         $this->load->view('manifestations/view', $data);
         $this->load->view('templates/footer', $data);
@@ -148,7 +150,7 @@ class Catalogue extends CI_Controller{
             // La couleur d'arrière plan doit être noir
             $pdf->SetFillColor(0,0,0);
             // On inscrit le nom et la date de la manifestation dans le cadre correspondant aux coordonnées spécifiées
-            $pdf->Cell(0,13,$manifestation['manif_intitul']." ( le ".$manifestation['manif_date']." )",1,1,1,1);
+            $pdf->Cell(0,13,$manifestation->manif_intitul." ( le ".$manifestation->manif_date." )",1,1,1,1);
             // On récupère la nouvelle coordonnée Y après ajout du bloc de titre
             $y=$pdf->GetY();
             // On indique que le texte doit être noir maintenant
@@ -162,15 +164,15 @@ class Catalogue extends CI_Controller{
             // On décale encore de 5
             $pdf->SetXY(15,$y+5);
             // On ajoute la description de la manifestations dans le bloc
-            $pdf->MultiCell(125,10,$manifestation['manif_description'],0,'L',false);
+            $pdf->MultiCell(125,10,$manifestation->manif_description,0,'L',false);
             // On décale de 30 sur Y
             $pdf->SetXY(15,$y+30);
             // On remplie de blanc le fond
             $pdf->SetFillColor(255,255,255);
             // On indique le prix en dollars de la place
-            $pdf->Cell(100,8,$manifestation['manif_prix_place']*1.34." Dollars par place seulement!",1,1,1,1);
+            $pdf->Cell(100,8,$manifestation->manif_prix_place*1.34." Dollars par place seulement!",1,1,1,1);
             // On ajoute l'image au coordonnées spécifiées
-            $pdf->Image(site_url()."public/photos/".$manifestation['manif_photo'],170,$y+1,30,40);
+            $pdf->Image(site_url()."public/photos/".$manifestation->manif_photo,170,$y+1,30,40);
             $pdf->Ln(10);
         }
         // On rend le PDF une fois que l'on a traité toute les manifs

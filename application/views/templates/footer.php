@@ -26,7 +26,7 @@
 <script src="<?php echo base_url(); ?>public/plugins/Lightbox/dist/js/lightbox.min.js"></script>
 <script src="<?php echo base_url(); ?>public/plugins/WOW/dist/wow.min.js"></script>
 <!-- GOOGLE MAP -->
-<script src="https://maps.googleapis.com/maps/api/js?key=******************"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8VaTW0r1Fmz2RoKuqKCcZkPO9jacDTDo"></script>
 </body>
 
 </html>

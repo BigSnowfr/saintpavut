@@ -12,11 +12,11 @@
             </tr>
         <?php foreach ($salles as $salle): // On parcours toutes les manifs contenu dans $salle?>
             <tr>
-                <td><?php echo $salle['salle_nom']; ?></td>
-                <td><?php echo $salle['salle_code']; ?></td>
-                <td><?php echo $salle['salle_surface']; ?></td>
-                <td><?php echo $salle['salle_place_max']; ?></td>
-                <td><?php echo round($salle['salle_surface']/$salle['salle_place_max']); // On affiche le m2 par place et on l'arrondi?></td>
+                <td><?php echo $salle->salle_nom; ?></td>
+                <td><?php echo $salle->salle_code; ?></td>
+                <td><?php echo $salle->salle_surface; ?></td>
+                <td><?php echo $salle->salle_place_max; ?></td>
+                <td><?php echo round($salle->salle_surface/$salle->salle_place_max); // On affiche le m2 par place et on l'arrondi?></td>
             </tr>
         <?php endforeach; ?>
         </table>
